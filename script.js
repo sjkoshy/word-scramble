@@ -1,5 +1,5 @@
 // word array //
-let words = [
+let original = [
   "syntax",
   "glance",
   "policy",
@@ -13,6 +13,10 @@ let words = [
   "branch"
 ]
 
+let words = [
+  ...original
+]
+
 
 // query selectors //
 
@@ -22,25 +26,24 @@ const checkButton = document.querySelector(".submit")
 const scoreCount = document.querySelector(".score")
 const resetButton = document.querySelector(".reset")
 let correctWord = ""
-let score = 0;
+let score = 0
 
 let gameStart = () => {
-  let randWord = words[Math.floor(Math.random() * words.length)]
-
-  let wordArray = randWord.split("")
-  let randomIdx;
-
+  let randWord = words.splice([Math.floor(Math.random() * words.length)], 1)
+  console.log(randWord)
+  let wordArray = randWord[0].split("")
+  let randIndex;
   for (let i = wordArray.length; i > 0; i--) {
     // randomIdx = Math.floor(Math.random() * i)
     // [wordArray[i], wordArray[randomIdx]] = [wordArray[randomIdx], wordArray[i]]
-    randomIdx = Math.floor(Math.random() * i)
+    randIndex = Math.floor(Math.random() * i)
     let temp = wordArray[i]
-    wordArray[i] = wordArray[randomIdx]
-    wordArray[randomIdx] = temp
+    wordArray[i] = wordArray[randIndex]
+    wordArray[randIndex] = temp
   }
 
   wordBox.innerText = wordArray.join("")
-  correctWord = randWord
+  correctWord = randWord[0]
   textBox.value = ""
 }
 
@@ -51,9 +54,10 @@ let checkWord = (e) => {
   let userGuess = textBox.value
   if (userGuess !== correctWord) {
     alert(`${userGuess} is not correct. Try again!`)
+    words.push(correctWord)
   } else {
+    alert(`You got it! ${correctWord} is the correct word.`)
     increaseScore()
-    alert(`You got it! ${correctWord} is the correct word`)
   }
   gameStart();
 }
@@ -61,38 +65,19 @@ let checkWord = (e) => {
 function increaseScore() {
   score += 10;
   scoreCount.innerText = `score: ${score.toString().padStart(3, '0')}`
+  if (score == 100) {
+    alert(`Great job! You won the game!`)
+    reset()
+  }
 }
 
-resetButton.addEventListener("click", gameStart);
-checkButton.addEventListener("click", checkWord);
+function reset() {
+  words = [...original]
+  score = 0
+  scoreCount.innerText = `score: ${score.toString().padStart(3, '0')}`
+}
 
-//split each word into arrays of characters//
+resetButton.addEventListener("click", reset)
+checkButton.addEventListener("click", checkWord)
 
-// function splitToChar(wordArray) {
-//   let charArray = []
-//   for (let i = 0; i < wordArray.length; i++) {
-//     let word = wordArray[i]
-//     let wordCharacters = wordArray.split("")
-//     charArray = charArray.concat(wordCharacters)
-//   }
-//   return charArray
-// }
-
-// const charArray = splitToChar(wordArray)
-// console.log(charArray)
-
-// const gameStart = () => {
-
-//   let randWord = words[Math.floor(Math.random() * words.length)]
-//   let wordArray = randWord.words.split("").join()
-// }
-// console.log(wordArray)
-
-// // function scramble() {
-// //   for (let i = words.length - 1; i > 0; i--)
-
-// // }
-
-
-// // gameStart()
 
