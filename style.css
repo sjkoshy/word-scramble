@@ -1,21 +1,74 @@
 body {
-  background-color: black;
-  margin: 50px 100px 0 100px;
+  background-color: #E1727B;
+  margin: 25px 100px 0 100px;
   display: grid;
   justify-content: center;
   text-align: center;
-  font-family: Arial, Helvetica, sans-serif;
   color: white;
 }
 
+h1 {
+  font-family: 'Permanent Marker', sans-serif;
+  font-size: 48px;
+  letter-spacing: 3px;
+}
+
 .word {
-  background-color: white;
+  background-color: #ffbeb5;
   width: 500px;
   height: 200px;
-  border-radius: 10px;
+  border: 3px solid #C1145B;
 }
 
 .input {
   margin: 20px auto;
+}
 
+.textbox {
+  width: 50%;
+  height: 50px;
+  background-color: #F9F8F9;
+  border: 2px solid #C1145B;
+  border-radius: 20px;
+  box-shadow: 0px 0px 1px 1px inset #a2124e;
+  text-align: center;
+}
+
+.submit {
+  background-color: #C1145B;
+  width: 100px;
+  height: 55px;
+  border-radius: 20px;
+  border: 1px solid #a2124e;
+  margin-left: 5px;
+  color: white;
+}
+
+.submit:hover {
+  background-color: #C1145B;
+  box-shadow: 2px 2px 2px #a2124e;
+  cursor: pointer;
+}
+
+p {
+  font-family: 'Roboto', sans-serif;
+  font-size: 36px;
+  border: 2px solid #F9F8F9;
+}
+
+.reset {
+  background-color: #F9F8F9;
+  width: 100px;
+  height: 55px;
+  border-radius: 20px;
+  border: 2px solid #a2124e;
+  color: #C1145B;
+  width: 150px;
+}
+
+.reset:hover {
+  background-color: #f5f5f5;
+  box-shadow: 2px 2px 2px #a2124e;
+  cursor: pointer;
+  color: #a2124e;
 }

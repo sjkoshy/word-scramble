@@ -6,25 +6,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Word Scramble</title>
   <link rel="stylesheet" href="/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Roboto&display=swap" rel="stylesheet">
   <script src="/script.js" defer></script>
 </head>
 
 <body>
-  <main>
+  <main class="container">
     <h1>word scramble</h1>
     <div class="word">
     </div>
+
     <div class="input">
       <form>
-        <input type="text" class="guess" placeholder="type your guess">
-        <input type="submit" value="submit">
+        <input type="text" class="textbox" placeholder="enter your guess">
+        <input type="submit" class="submit" value="check word">
       </form>
     </div>
 
     </div>
     <div class="score">
-      <p>Score:</p>
+      <p>score:</p>
     </div>
+    <button class="reset">reset game</button>
 
   </main>
 
