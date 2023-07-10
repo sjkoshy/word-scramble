@@ -1,17 +1,70 @@
 // word array //
 let words = [
-  ["syntax"],
-  ["glance"],
-  ["policy"],
-  ["height"],
-  ["middle"],
-  ["window"],
-  ["bounty"],
-  ["script"],
-  ["carpet"],
-  ["object"],
-  ["branch"]
+  "syntax",
+  "glance",
+  "policy",
+  "height",
+  "middle",
+  "window",
+  "bounty",
+  "script",
+  "carpet",
+  "object",
+  "branch"
 ]
+
+
+// query selectors //
+
+const wordBox = document.querySelector(".word")
+const textBox = document.querySelector(".textbox")
+const checkButton = document.querySelector(".submit")
+const scoreCount = document.querySelector(".score")
+const resetButton = document.querySelector(".reset")
+let correctWord = ""
+let score = 0;
+
+let gameStart = () => {
+  let randWord = words[Math.floor(Math.random() * words.length)]
+
+  let wordArray = randWord.split("")
+  let randomIdx;
+
+  for (let i = wordArray.length; i > 0; i--) {
+    // randomIdx = Math.floor(Math.random() * i)
+    // [wordArray[i], wordArray[randomIdx]] = [wordArray[randomIdx], wordArray[i]]
+    randomIdx = Math.floor(Math.random() * i)
+    let temp = wordArray[i]
+    wordArray[i] = wordArray[randomIdx]
+    wordArray[randomIdx] = temp
+  }
+
+  wordBox.innerText = wordArray.join("")
+  correctWord = randWord
+  textBox.value = ""
+}
+
+gameStart()
+
+let checkWord = (e) => {
+  e.preventDefault()
+  let userGuess = textBox.value
+  if (userGuess !== correctWord) {
+    alert(`${userGuess} is not correct. Try again!`)
+  } else {
+    increaseScore()
+    alert(`You got it! ${correctWord} is the correct word`)
+  }
+  gameStart();
+}
+
+function increaseScore() {
+  score += 10;
+  scoreCount.innerText = `score: ${score.toString().padStart(3, '0')}`
+}
+
+resetButton.addEventListener("click", gameStart);
+checkButton.addEventListener("click", checkWord);
 
 //split each word into arrays of characters//
 
@@ -28,15 +81,6 @@ let words = [
 // const charArray = splitToChar(wordArray)
 // console.log(charArray)
 
-
-// query selectors //
-
-let wordBox = document.querySelector(".word")
-let checkButton = document.querySelector(".submit")
-let scoreCount = document.querySelector(".score")
-let textBox = document.querySelector(".textbox")
-let resetButton = document.querySelector(".reset")
-
 // const gameStart = () => {
 
 //   let randWord = words[Math.floor(Math.random() * words.length)]
@@ -51,36 +95,4 @@ let resetButton = document.querySelector(".reset")
 
 
 // // gameStart()
-
-let correctWord
-
-const gameStart = () => {
-  let randWord = words[Math.floor(Math.random() * words.length)];
-  let wordArray = randWord.words.split("");
-  for (let i = wordArray.length - 1; i > 0; i--) {
-    let j = Math.floor(Math.random() * (i + 1));
-    [wordArray[i], wordArray[j]] = [wordArray[j], wordArray[i]];
-  }
-  wordBox.innerText = wordArray.join("");
-  correctWord = randWord.words.toLowerCase();;
-  textBox.value = "";
-  // inputField.setAttribute("maxlength", correctWord.length);
-}
-gameStart();
-const checkWord = () => {
-  let userGuess = textBox.value.toLowerCase();
-  // if (!userWord) return alert("Please enter the word to check!");
-  if (userGuess !== correctWord) return alert(`${userGuess} is not correct. Try again!`);
-  alert(`You got it! ${correctWord} is the correct word`);
-  gameStart();
-}
-
-let score = 0;
-function increasePointsByTen() {
-  score += 10;
-  document.querySelector(".score").innerHTML = scoreCount
-}
-
-resetButton.addEventListener("click", gameStart);
-checkButton.addEventListener("click", checkWord);
 
