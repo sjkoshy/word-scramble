@@ -25,6 +25,7 @@ const textBox = document.querySelector(".textbox")
 const checkButton = document.querySelector(".submit")
 const scoreCount = document.querySelector(".score")
 const resetButton = document.querySelector(".reset")
+const gameMessage = document.querySelector(".game-message")
 let correctWord = ""
 let score = 0
 
@@ -53,10 +54,12 @@ let checkWord = (e) => {
   e.preventDefault()
   let userGuess = textBox.value
   if (userGuess !== correctWord) {
-    alert(`${userGuess} is not correct. Try again!`)
+    // alert(`${userGuess} is not correct. Try again!`)
+    gameMessage.innerText = (`"${userGuess}" is not correct. Try again!`)
     words.push(correctWord)
   } else {
-    alert(`You got it! ${correctWord} is the correct word.`)
+    // alert(`You got it! ${correctWord} is the correct word.`)
+    gameMessage.innerText = (`You got it! "${correctWord}" is the correct word.`)
     increaseScore()
   }
   gameStart();
@@ -66,7 +69,8 @@ function increaseScore() {
   score += 10;
   scoreCount.innerText = `score: ${score.toString().padStart(3, '0')}`
   if (score == 100) {
-    alert(`Great job! You won the game!`)
+    gameMessage.innerText = (`Great job! You won the game!`)
+    // alert(`Great job! You won the game!`)
     reset()
   }
 }
